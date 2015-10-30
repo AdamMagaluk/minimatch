@@ -267,6 +267,15 @@ function parse (pattern, isSub) {
   if (!options.noglobstar && pattern === '**') return GLOBSTAR
   if (pattern === '') return ''
 
+  if (pattern[0] === '{' && pattern[pattern.length-1]) {
+    var flags = options.nocase ? 'i' : '';
+    var regExp = new RegExp('^' + pattern.slice(1, -1) + '$', flags)
+    regExp._glob = pattern
+    regExp._src = pattern;
+    this.debug('Found Regex: %s\t%s %s %j', pattern);
+    return regExp;
+  }
+
   var re = ''
   var hasMagic = !!options.nocase
   var escaping = false

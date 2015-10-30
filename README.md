@@ -1,4 +1,4 @@
-# minimatch
+# minimatch-with-regex
 
 A minimal matching utility.
 
