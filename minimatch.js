@@ -267,7 +267,7 @@ function parse (pattern, isSub) {
   if (!options.noglobstar && pattern === '**') return GLOBSTAR
   if (pattern === '') return ''
 
-  if (pattern[0] === '{' && pattern[pattern.length-1]) {
+  if (pattern[0] === '{' && pattern[pattern.length-1] === '}') {
     var flags = options.nocase ? 'i' : '';
     var regExp = new RegExp('^' + pattern.slice(1, -1) + '$', flags)
     regExp._glob = pattern
